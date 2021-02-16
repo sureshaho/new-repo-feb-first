@@ -1,3 +1,3 @@
 <h1> Hello, Welcome to Valaxy Technologies !!! </h1>
 <h2> Deploying on Kubernetes </h2>
-<h3> One last test master using GIT CLI </h3>
+<h3> noted all points </h3>
