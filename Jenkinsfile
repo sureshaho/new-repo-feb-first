@@ -10,6 +10,6 @@ node{
      sh "${mvnhome}/bin/mvn package"
   }
   stage('Email notification'){
-   mail bcc: '', body: 'Hello how are you Vinayak', cc: '', from: '', replyTo: '', subject: 'Notofications', to: 'suresha.ho@gmail.com'
+   mail bcc: '', body: 'Hello how are you Gayathri', cc: '', from: '', replyTo: '', subject: 'Notofications', to: 'suresha.ho@gmail.com'
   }
 }
