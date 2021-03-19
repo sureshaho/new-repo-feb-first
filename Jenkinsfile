@@ -1,7 +1,9 @@
+properties([parameters([choice(choices: 'master\ndev\nQA', description: 'Please Pick branch to build', name: 'branch')])])
+
 node{
-  stage('SCM checkout'){
-     
-     git 'https://github.com/sureshaho/new-repo-feb-first'
+  stage('SCM checkout as per User'){
+     echo "pull code from git at run time ${params.branch}"
+     git url: 'https://github.com/sureshaho/new-repo-feb-first', branch: "${params.branch}"
   }
   stage('Build'){
      def mvnhome = tool name: 'Maven', type: 'maven'
