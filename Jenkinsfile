@@ -1,4 +1,7 @@
 properties([parameters([choice(choices: 'master\ndev\nQA', description: 'Please Pick branch to build', name: 'branch')])])
+import jenkins.model.*
+jenkins = Jenkins.instance
+
 
 node{
   stage('SCM checkout as per User'){
