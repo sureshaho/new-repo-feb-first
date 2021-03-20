@@ -9,7 +9,13 @@ node{
      def mvnhome = tool name: 'Maven', type: 'maven'
      sh "${mvnhome}/bin/mvn package"
   }
+  stage('Sonar Analysys'){
+      def mvnhome = tool name: 'Maven', type: 'maven'
+	  withSonarQubeEnv(Sonar-server1){
+	   sh "${mvnhome}/bin/mvn sonar:sonar"
+	  }
+  }
   stage('Email notification'){
-   mail bcc: '', body: 'Hello how are you Gayathri', cc: '', from: '', replyTo: '', subject: 'Notofications', to: 'suresha.ho@gmail.com'
+   mail bcc: '', body: 'Hello how are you Vinayak', cc: '', from: '', replyTo: '', subject: 'Notofications', to: 'suresha.ho@gmail.com'
   }
 }
