@@ -1,6 +1,5 @@
 properties([parameters([choice(choices: 'master\ndev\nQA', description: 'Please Pick branch to build', name: 'branch')])])
-import jenkins.model.*
-jenkins = Jenkins.instance
+
 
 
 node{
@@ -13,7 +12,7 @@ node{
      sh "${mvnhome}/bin/mvn package"
   }
   stage('Sonar Analysys'){
-      def mvnhome = tool name: 'Maven', type: 'maven'
+     def mvnhome = tool name: 'Maven', type: 'maven'
 	  withSonarQubeEnv(Sonar-server1){
 	   sh "${mvnhome}/bin/mvn sonar:sonar"
 	  }
