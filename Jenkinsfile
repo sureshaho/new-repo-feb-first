@@ -9,13 +9,8 @@ node{
      def mvnhome = tool name: 'Maven', type: 'maven'
      sh "${mvnhome}/bin/mvn package"
   }
-  stage('Sonar Analysys'){
-      def mvnhome = tool name: 'Maven', type: 'maven'
-	   withSonarQubeEnv('Sonar-server1'){
-	    sh "${mvnhome}/bin/mvn sonar:sonar"
-	  }
-  }
-  stage('Email notification'){
-   mail bcc: '', body: 'Hello how are you Vinayak', cc: '', from: '', replyTo: '', subject: 'Notofications', to: 'suresha.ho@gmail.com'
+  stage('Tomcat Deployment'){
+     sshagent(['tomcat-dev']) {
+     sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-use@172.31.13.162:/opt/tomcat/apache-tomcat-8.5.64/webapps'
   }
 }
