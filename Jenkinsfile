@@ -33,4 +33,8 @@ node{
      sh 'docker push sureshaho/simple-dev-op-image-latest:0.0.12'
     
   }
+    stage('Docker Pull and Deploy to Docker Host'){
+     sh ' ansiblePlaybook credentialsId: 'tomcat-container-server', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Tomcat-container-server.inv', playbook: 'Ansible-Dock.yml' '
+    
+  }
 }
