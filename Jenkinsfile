@@ -22,12 +22,14 @@ node{
      sshagent(['tomcat-dev']) {
      sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkin-git-and-maven/webapp/target/*.war  ec2-user@172.31.13.162:/opt/tomcat/apache-tomcat-8.5.64/webapps'
   }
-  }
   stage('Build the docker image'){
      sh 'cp /var/lib/jenkins/workspace/jenkin-git-and-maven/webapp/target/webapp.war /var/lib/jenkins/workspace/jenkin-git-and-maven'
      sh 'docker build . -t sureshaho/simple-dev-op-image-latest:0.0.12'
   }
   stage('Push the docker image to Docker Hub'){
+     withCredentials([string(credentialsId: 'docker-hub', variable: 'docker-hub-variable')]) {
+      sh 'docker login -u sureshaho -p ${docker-hub-variable}' 
+     }
      sh 'docker push sureshaho/simple-dev-op-image-latest:0.0.12'
     
   }
