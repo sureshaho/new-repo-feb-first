@@ -28,9 +28,8 @@ node{
      sh 'docker build . -t sureshaho/simple-dev-op-image-latest:0.0.12'
   }
   stage('Push the docker image to Docker Hub'){
-     withCredentials([string(credentialsId: 'docker-hub', variable: 'docker-hub-variable')]) {
-      sh 'docker login -u sureshaho -p ${docker-hub-variable}' 
-     }
+     sh 'docker login --username sureshaho --password-stdin < ~/my_password'
+
      sh 'docker push sureshaho/simple-dev-op-image-latest:0.0.12'
     
   }
