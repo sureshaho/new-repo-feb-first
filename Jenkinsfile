@@ -34,7 +34,7 @@ node{
     
   }
     stage('Docker Pull and Deploy to Docker Host'){
-     sh ' ansiblePlaybook credentialsId: 'tomcat-container-server', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Tomcat-container-server.inv', playbook: 'Ansible-Dock.yml' '
+     sh " ansiblePlaybook credentialsId: 'tomcat-container-server', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Tomcat-container-server.inv', playbook: 'Ansible-Dock.yml' "
     
   }
 }
