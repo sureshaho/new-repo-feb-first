@@ -19,7 +19,7 @@ node{
   }
   }
   stage('Build the docker image'){
-     sh 'docker build . -t sureshaho/simple-dev-op-image-latest:$(DOCKER_TAG)'
+     sh 'docker build . -t sureshaho/simple-dev-op-image-latest:0.0.1'
   }
 }
 
