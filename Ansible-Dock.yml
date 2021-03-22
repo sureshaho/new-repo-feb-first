@@ -1,5 +1,5 @@
 ---
- - hosts: all
+ - hosts: Tomcat-container-server
    become: true
 
    tasks:
