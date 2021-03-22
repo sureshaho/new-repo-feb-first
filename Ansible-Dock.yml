@@ -10,10 +10,10 @@
      command: docker rm simple-dev-op-container
      ignore_errors: yes
    - name: remove image of stopped container
-     command: docker rmi sureshaho/simple-dev-op-image-latest:latest
+     command: docker rmi sureshaho/simple-dev-op-image-latest:0.0.12
      ignore_errors: yes
    - name: pull the image from HUB
-     command: docker pull sureshaho/simple-dev-op-image-latest:latest
+     command: docker pull sureshaho/simple-dev-op-image-latest:0.0.12
 
    - name: create the container using image simple-dev-op-image
      command: docker run -d --name simple-dev-op-container -p 8090:8080 sureshaho/simple-dev-op-image-latest:0.0.12
