@@ -19,7 +19,8 @@ node{
   }
   }
   stage('Build the docker image'){
-     sh 'docker build . -t sureshaho/simple-dev-op-image-latest:0.0.1'
+     sh 'cp /var/lib/jenkins/workspace/jenkin-git-and-maven/webapp/target/webapp.war /var/lib/jenkins/workspace/jenkin-git-and-maven'
+     sh 'docker build . -t sureshaho/simple-dev-op-image-latest:0.0.11'
   }
 }
 
