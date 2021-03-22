@@ -1,5 +1,10 @@
 properties([parameters([choice(choices: 'master\ndev\nQA', description: 'Please Pick branch to build', name: 'branch')])])
 
+def getVersion(){
+	def commithash = sh returnStdout: true, script: 'git rev-parse   --short HEAD' 
+	return commithash
+}
+
 environment {
   DOCKER_TAG = "getVersion()"
 }
@@ -17,14 +22,12 @@ node{
      sshagent(['tomcat-dev']) {
      sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkin-git-and-maven/webapp/target/*.war  ec2-user@172.31.13.162:/opt/tomcat/apache-tomcat-8.5.64/webapps'
   }
-  }
   stage('Build the docker image'){
      sh 'cp /var/lib/jenkins/workspace/jenkin-git-and-maven/webapp/target/webapp.war /var/lib/jenkins/workspace/jenkin-git-and-maven'
-     sh 'docker build . -t sureshaho/simple-dev-op-image-latest:0.0.11'
+     sh 'docker build . -t sureshaho/simple-dev-op-image-latest:0.0.12'
   }
-}
-
-def getVersion(){
-	def commithash = sh returnStdout: true, script: 'git rev-parse   --short HEAD' 
-	return commithash
+  stage('Push the docker image to Docker Hub'){
+     sh 'docker push sureshaho/simple-dev-op-image-latest:0.0.12'
+    
+  }
 }
