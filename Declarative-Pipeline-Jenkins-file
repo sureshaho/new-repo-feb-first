@@ -29,12 +29,13 @@ pipeline {
                 }   """
             }
         }
-		stage("Docker Build"){
+	stage("Docker Build"){
             steps{
                 sh "docker build . -t sureshaho/project:${Docker_TAG}"
+            }
         }
-    }
-  }
+   }
+   }
     
 }
 
