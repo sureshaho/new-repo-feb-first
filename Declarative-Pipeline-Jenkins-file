@@ -3,6 +3,9 @@ pipeline {
     environment{
         PATH = "/opt/apache-maven-3.6.3/bin:$PATH"
     }
+	environment {
+             Docker_TAG = "getVersion()"
+    }
     agent any
     stages{
         stage("GIT checkout"){
@@ -26,7 +29,16 @@ pipeline {
                 }   """
             }
         }
+		stage("Docker Build"){
+            steps{
+                sh "docker build . -t sureshaho/project:${Docker_TAG}"
+        }
     }
   }
     
+}
+
+def getVersion(){
+	def commithash = sh returnStdout: true, script: 'git rev-parse   --short HEAD' 
+	return commithash
 }
