@@ -9,4 +9,4 @@ spec:
     - name: nodeapp
       image: sureshaho/project:v1
       ports:
-        - containerPort: 8060
+        - containerPort: 8080
