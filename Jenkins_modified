@@ -10,11 +10,6 @@ pipeline {
     
     agent any
     stages{
-        stage("GIT checkout"){
-            steps{
-               git branch: 'master', url: 'https://github.com/sureshaho/new-repo-feb-first.git'
-            }
-        }
         stage("Maven build"){
             steps{
                 sh "mvn clean  package"
